@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:glass_pyramid/provider/audio_provider.dart';
+import 'package:glass_pyramid/provider/scene_provider.dart';
 import 'package:glass_pyramid/provider/skill_provider.dart';
 import 'package:glass_pyramid/screens/about_page.dart';
 import 'package:glass_pyramid/screens/stats_page.dart';
@@ -18,12 +19,13 @@ class HomePageButtons extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Consumer<SkillProvider>(
-          builder: (context, skillProvider, child) => MainButton(
+        Consumer2<SkillProvider, SceneProvider>(
+          builder: (context, skillProvider, sceneProvider, child) => MainButton(
             "START NEW ADVENTURE",
             () {
               Navigator.of(context).pushReplacementNamed(StatsPage.id);
               skillProvider.resetSkills();
+              sceneProvider.getScenes();
             },
           ),
         ),

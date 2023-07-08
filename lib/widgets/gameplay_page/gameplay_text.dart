@@ -20,6 +20,7 @@ class GameplayText extends StatelessWidget {
       child: Consumer2<AudioProvider, SceneProvider>(
         builder: (context, audioProvider, sceneProvider, child) =>
             AnimatedTextKit(
+          key: ValueKey(sceneProvider.sceneText),
           displayFullTextOnTap: true,
           stopPauseOnTap: true,
           repeatForever: true,
@@ -33,7 +34,6 @@ class GameplayText extends StatelessWidget {
               audioProvider.playTypingAudio();
             }
           },
-          key: ValueKey(sceneProvider.sceneText),
           animatedTexts: [
             TypewriterAnimatedText(
               sceneProvider.sceneText,

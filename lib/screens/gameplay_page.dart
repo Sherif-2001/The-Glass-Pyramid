@@ -28,13 +28,15 @@ class GameplayPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Container(
-                decoration: BoxDecoration(
+              Consumer<SceneProvider>(
+                builder: (context, sceneProvider, child) => Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.black, width: 3)),
+                  child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.black, width: 3)),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.asset("assets/game_image.png"),
+                    child: Image.asset(sceneProvider.sceneImage),
+                  ),
                 ),
               ),
               Consumer<SceneProvider>(

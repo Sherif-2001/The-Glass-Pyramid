@@ -1,0 +1,134 @@
+{
+    "scenes": {
+        "intro": [
+            {
+                "id": 1,
+                "text": "In the end it turned out it's easier to destroy the planet than to destroy capitalism....In 2088 , all billionaires fucked off to space , leaving all of us normal folks to fend for ourselves against the Earth's vengeance , most of which they caused mind you , we were slowly dying civilization on a slowly dying planet.",
+                "next": {
+                    "name": "intro",
+                    "id": 2
+                },
+                "image": "assets/images/intro_1.png"
+            },
+            {
+                "id": 2,
+                "text": "You'd think that would make us unite , forget our differences but no , some people still wanted to feel superior to others , somehow forgetting that they've all been used by the same people nonetheless. There's a lot of factions now fighting over what little land is still habitable. Soon enough there'll be nothing left to fight for.",
+                "next": {
+                    "name": "intro",
+                    "id": 3
+                },
+                "image": "assets/images/intro_2.png"
+            },
+            {
+                "id": 3,
+                "text": "You're a scavenger looking through old tech-waste that was buried near your home , you find this shiny disk , it looks important , like it's designed to resist being destroyed , it also glows in the dark which is super cool.",
+                "next": {
+                    "name": "intro",
+                    "id": 4
+                },
+                "image": "assets/images/intro_3.png"
+            },
+            {
+                "id": 4,
+                "choices": [
+                    {
+                        "id": 1,
+                        "text": "Take it to Elder Blake",
+                        "next": {
+                            "name": "Elder Blake",
+                            "id": 1
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "text": "Take it to Elder Martin",
+                        "next": {
+                            "name": "Elder Martin",
+                            "id": 1
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "text": "Take it to Scientist Carlos",
+                        "next": {
+                            "name": "Scientist Carlos",
+                            "id": 1
+                        }
+                    }
+                ]
+            }
+        ],
+        "Elder Blake": [
+            {
+                "id": 1,
+                "text": "Elder Blake:\nHello there, elder Blake at your service. What can I help you with?",
+                "next": {
+                    "name": "Elder Blake",
+                    "id": 2
+                }
+            },
+            {
+                "id": 2,
+                "choices": [
+                    {
+                        "id": 1,
+                        "text": "What can you tell me about this disk?",
+                        "next": {
+                            "name": "Elder Blake",
+                            "id": 3
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "text": "Elder Blake:\nWell to be honest, I'm not really a science guy, I'm more into old arts, more specifically the old art of movies, a screen where people do all sorts of silly acts, you'd better go talk to Carlos, he would know more about this than me.",
+                "next": {
+                    "name": "intro",
+                    "id": 4
+                }
+            }
+        ],
+        "Elder Martin": [
+            {
+                "id": 1,
+                "text": "Elder Martin:\nHello there , What can elder Martin do in this fine day?",
+                "next": {
+                    "name": "Elder Martin",
+                    "id": 2
+                }
+            },
+            {
+                "id": 2,
+                "choices": [
+                    {
+                        "id": 1,
+                        "text": "What can you tell me about this disk?",
+                        "next": {
+                            "name": "Elder Martin",
+                            "id": 3
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "text": "Elder Martin:\nThis looks like one of those old devices that were used to store media a long time ago, that's basically all I know about it. You should talk to Carlos, he would know what to do even if he doesn't seem confident in his abilities.",
+                "next": {
+                    "name": "intro",
+                    "id": 4
+                }
+            }
+        ],
+        "Scientist Carlos": [
+            {
+                "id": 1,
+                "text": "Carlos:\nHello there, What did you find in that pile of garbage? batteries? capacitors? I could always use a good capacitor.",
+                "next": {
+                    "name": "intro",
+                    "id": 4
+                }
+            }
+        ]
+    }
+}

@@ -1,6 +1,14 @@
-class Choice {
-  List<String> choicesText;
-  List nextScenes;
+import 'package:glass_pyramid/models/next.dart';
 
-  Choice({required this.choicesText, required this.nextScenes});
+class Choice {
+  final int id;
+  final String text;
+  final NextScene next;
+
+  Choice({required this.id, required this.text, required this.next});
+
+  factory Choice.fromJson(Map<String, dynamic> json) => Choice(
+      id: json["id"],
+      text: json['text'],
+      next: NextScene.fromJson(json['next']));
 }
