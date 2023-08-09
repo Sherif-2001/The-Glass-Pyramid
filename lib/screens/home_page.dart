@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:glass_pyramid/provider/audio_provider.dart';
-import 'package:glass_pyramid/widgets/home_page/home_page_buttons.dart';
+import 'package:glass_pyramid/provider/scene_provider.dart';
+import 'package:glass_pyramid/provider/skill_provider.dart';
+import 'package:glass_pyramid/screens/credits_page.dart';
+import 'package:glass_pyramid/screens/stats_page.dart';
+import 'package:glass_pyramid/widgets/main_button.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -82,7 +87,7 @@ class HomePage extends StatelessWidget {
             children: [
               Center(
                 child: Text(
-                  "the Glass Pyramid",
+                  "the glass pyramid".toUpperCase(),
                   style: TextStyle(color: Colors.green[300], fontSize: 35),
                 ),
               ),
@@ -91,8 +96,50 @@ class HomePage extends StatelessWidget {
                 child: Image.asset('assets/images/game_image.png'),
               ),
               const SizedBox(height: 20),
-              HomePageButtons(
-                onSettingsClick: () => showSettingsDialog(context),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Consumer2<SkillProvider, SceneProvider>(
+                    builder: (context, skillProvider, sceneProvider, child) =>
+                        MainButton(
+                      "Start adventure".toUpperCase(),
+                      () {
+                        Navigator.of(context).pushReplacementNamed(StatsPage.id);
+                        skillProvider.resetSkills();
+                        sceneProvider.getScenes();
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  MainButton(
+                    "Settings".toUpperCase(),
+                    () => showSettingsDialog(context),
+                  ),
+                  const SizedBox(height: 20),
+                  Consumer<AudioProvider>(
+                    builder: (context, provider, child) {
+                      return MainButton(
+                        'Credits'.toUpperCase(),
+                        () {
+                          Navigator.of(context)
+                              .pushReplacementNamed(CreditsPage.id);
+                          provider.playTypingAudio();
+                        },
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  Consumer<AudioProvider>(
+                    builder: (context, audioProvider, child) => MainButton(
+                      "exit".toUpperCase(),
+                      () {
+                        audioProvider.disposeMusicPlayer();
+                        audioProvider.disposeTypingPlayer();
+                        SystemNavigator.pop();
+                      },
+                    ),
+                  ),
+                ],
               )
             ],
           ),

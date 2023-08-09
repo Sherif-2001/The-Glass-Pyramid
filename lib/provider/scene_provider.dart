@@ -27,6 +27,12 @@ class SceneProvider extends ChangeNotifier {
 
 // ---------------------------------- Getters ----------------------------------
 
+  void getScenes() async {
+    String scenesString = await rootBundle.loadString('assets/scenes.json');
+    final scenesJson = json.decode(scenesString);
+    _scenesCollection = ScenesCollection.fromJson(scenesJson);
+  }
+
   bool get isTextVisible {
     return _currentScene.choices!.isEmpty;
   }
@@ -47,11 +53,5 @@ class SceneProvider extends ChangeNotifier {
     return !isTextVisible
         ? _currentScene.choices!.map((e) => e.text).toList()
         : [];
-  }
-
-  void getScenes() async {
-    String scenesString = await rootBundle.loadString('assets/scenes.json');
-    final scenesJson = json.decode(scenesString);
-    _scenesCollection = ScenesCollection.fromJson(scenesJson);
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:glass_pyramid/provider/audio_provider.dart';
 import 'package:glass_pyramid/provider/scene_provider.dart';
 import 'package:glass_pyramid/provider/skill_provider.dart';
-import 'package:glass_pyramid/screens/about_page.dart';
+import 'package:glass_pyramid/screens/credits_page.dart';
 import 'package:glass_pyramid/screens/gameplay_page.dart';
 import 'package:glass_pyramid/screens/splash_page.dart';
 import 'package:glass_pyramid/screens/stats_page.dart';
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
           routes: {
             SplashPage.id: (context) => const SplashPage(),
             HomePage.id: (context) => const HomePage(),
-            AboutPage.id: (context) => AboutPage(),
+            CreditsPage.id: (context) => CreditsPage(),
             GameplayPage.id: (context) => const GameplayPage(),
             StatsPage.id: (context) => const StatsPage()
           },

@@ -36,14 +36,14 @@ class SkillProgressProvider extends StatelessWidget {
           builder: (context, skillProvider, child) =>
               DashedCircularProgressBar.square(
             dimensions: 70,
-            progress: skillProvider.getSkill(stat)!,
+            progress: skillProvider.skillsValues[stat]!,
             maxProgress: 3,
             foregroundColor: Colors.green.shade400,
             backgroundColor: Colors.white,
             backgroundStrokeWidth: 5,
             foregroundStrokeWidth: 5,
             child: Center(
-              child: Text(skillProvider.getSkill(stat)!.toStringAsFixed(0),
+              child: Text(skillProvider.skillsValues[stat]!.toStringAsFixed(0),
                   style: const TextStyle(color: Colors.white, fontSize: 50)),
             ),
           ),

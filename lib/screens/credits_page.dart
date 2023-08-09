@@ -5,12 +5,12 @@ import 'package:glass_pyramid/screens/home_page.dart';
 import 'package:glass_pyramid/widgets/main_button.dart';
 import 'package:provider/provider.dart';
 
-class AboutPage extends StatelessWidget {
-  static String id = "aboutPage";
-  AboutPage({Key? key}) : super(key: key);
+class CreditsPage extends StatelessWidget {
+  static String id = "creditsPage";
+  CreditsPage({Key? key}) : super(key: key);
 
   final List<String> textList = [
-    "The Glass pyramid is an interactive story game mixing between fiction & reality, sadness & happiness, and even between past & future.\n\nIt will take you away into an adventure that you will not forget\n\nSo, good luck and have fun",
+    "The Glass pyramid is an interactive story game mixing between fiction & reality, sadness & happiness, and even between past & future.\n\nIt will take you away into an adventure that you will not forget\n\nGood luck and have fun",
     "Directed by\n\nAhmed El-Sarta",
     "Art Director\n\nAhmed El-Sarta",
     "Lead Programmer\n\nSherif Ahmed"
@@ -28,7 +28,7 @@ class AboutPage extends StatelessWidget {
             children: [
               Center(
                 child: Text(
-                  "ABOUT THE GAME",
+                  "credits".toUpperCase(),
                   style: TextStyle(color: Colors.green[300], fontSize: 30),
                 ),
               ),
@@ -53,7 +53,6 @@ class AboutPage extends StatelessWidget {
                         textList.length,
                         (index) => TypewriterAnimatedText(
                           textList[index].toUpperCase(),
-                          textAlign: TextAlign.center,
                           speed: const Duration(milliseconds: 50),
                           textStyle: TextStyle(
                             fontSize: 30,
@@ -68,7 +67,7 @@ class AboutPage extends StatelessWidget {
               Consumer<AudioProvider>(
                 builder: (context, provider, child) {
                   return MainButton(
-                    "Main Menu",
+                    "Back",
                     () {
                       Navigator.of(context).pushReplacementNamed(HomePage.id);
                       provider.stopTypingAudio();

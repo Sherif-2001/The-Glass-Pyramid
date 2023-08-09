@@ -15,7 +15,7 @@ class GameplayDrawer extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         const Text(
-          "Your Stats",
+          "Stats",
           style: TextStyle(color: Colors.green, fontSize: 40),
         ),
         ListView.separated(
@@ -51,7 +51,7 @@ class GameplayDrawer extends StatelessWidget {
             ),
             icon: const Icon(Icons.door_back_door),
             onPressed: () => {
-              Navigator.of(context).pushReplacementNamed(HomePage.id),
+              Navigator.of(context).popAndPushNamed(HomePage.id),
               audioProivder.stopTypingAudio(),
             },
           ),

@@ -31,11 +31,7 @@ class SkillProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  double? getSkill(Stat stat) {
-    return skillsValues[stat];
-  }
+  Map<Stat, double> get skills => skillsValues;
 
-  int getSkillPoints() {
-    return _skillPoints;
-  }
+  int get skillPoints => _skillPoints;
 }
