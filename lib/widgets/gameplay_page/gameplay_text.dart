@@ -27,6 +27,7 @@ class GameplayText extends StatelessWidget {
           pause: const Duration(days: 1),
           onNextBeforePause: (p0, p1) {
             audioProvider.stopTypingAudio();
+            sceneProvider.saveGame();
           },
           onNext: (p0, p1) {
             sceneProvider.onTextClicked();

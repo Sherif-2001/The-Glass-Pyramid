@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MainButton extends StatelessWidget {
   const MainButton(this.choiceText, this.onPress, {Key? key}) : super(key: key);
 
-  final VoidCallback onPress;
+  final VoidCallback? onPress;
   final String choiceText;
 
   @override
@@ -15,7 +15,7 @@ class MainButton extends StatelessWidget {
         style: const TextStyle(fontSize: 20),
       ),
       style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.all(25),
+        padding: const EdgeInsets.all(20),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         shadowColor: Colors.green,
         elevation: 10,

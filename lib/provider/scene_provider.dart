@@ -1,8 +1,10 @@
 import 'package:flutter/services.dart';
+import 'package:glass_pyramid/models/next.dart';
 import 'package:glass_pyramid/models/scene.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:glass_pyramid/models/scenes_collection.dart';
+import 'package:glass_pyramid/services/database_helper.dart';
 
 class SceneProvider extends ChangeNotifier {
   late ScenesCollection _scenesCollection;
@@ -13,7 +15,17 @@ class SceneProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onTextClicked() {
+  void loadGame(NextScene scene) async {
+    await getScenes();
+    _currentScene = _scenesCollection.scenes[scene.name]![scene.id - 1];
+    notifyListeners();
+  }
+
+  void saveGame() async {
+    await DatabaseHelper.saveCurrentScene(_currentScene.nextScene!);
+  }
+
+  void onTextClicked() async {
     _currentScene = _scenesCollection.scenes[_currentScene.nextScene!.name]![
         _currentScene.nextScene!.id - 1];
     notifyListeners();
@@ -25,13 +37,14 @@ class SceneProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-// ---------------------------------- Getters ----------------------------------
-
-  void getScenes() async {
+  Future getScenes() async {
     String scenesString = await rootBundle.loadString('assets/scenes.json');
     final scenesJson = json.decode(scenesString);
     _scenesCollection = ScenesCollection.fromJson(scenesJson);
+    notifyListeners();
   }
+
+// ---------------------------------- Getters ----------------------------------
 
   bool get isTextVisible {
     return _currentScene.choices!.isEmpty;

@@ -68,6 +68,7 @@ class _StatsPageState extends State<StatsPage> {
                               .pushReplacementNamed(GameplayPage.id);
                           sceneProvider.startGame();
                           audioProvider.playTypingAudio();
+                          skillProvider.saveSkills();
                         }
                       },
                     ),

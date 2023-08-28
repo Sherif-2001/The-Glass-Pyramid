@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:glass_pyramid/models/next.dart';
 import 'package:glass_pyramid/provider/audio_provider.dart';
 import 'package:glass_pyramid/provider/scene_provider.dart';
 import 'package:glass_pyramid/provider/skill_provider.dart';
 import 'package:glass_pyramid/screens/credits_page.dart';
+import 'package:glass_pyramid/screens/gameplay_page.dart';
 import 'package:glass_pyramid/screens/stats_page.dart';
+import 'package:glass_pyramid/services/database_helper.dart';
 import 'package:glass_pyramid/widgets/main_button.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   static String id = "homePageId";
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   void showSettingsDialog(BuildContext context) {
     Alert(
       context: context,
@@ -73,6 +81,21 @@ class HomePage extends StatelessWidget {
     ).show();
   }
 
+  NextScene? _currentScene;
+
+  void checkGameState() async {
+    final currentScenes = await DatabaseHelper.loadCurrentScene();
+    setState(() {
+      _currentScene = currentScenes;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkGameState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -104,10 +127,26 @@ class HomePage extends StatelessWidget {
                         MainButton(
                       "Start adventure".toUpperCase(),
                       () {
-                        Navigator.of(context).pushReplacementNamed(StatsPage.id);
                         skillProvider.resetSkills();
                         sceneProvider.getScenes();
+                        Navigator.of(context)
+                            .pushReplacementNamed(StatsPage.id);
                       },
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Consumer2<SkillProvider, SceneProvider>(
+                    builder: (context, skillProvider, sceneProvider, child) =>
+                        MainButton(
+                      "Load adventure".toUpperCase(),
+                      _currentScene != null
+                          ? () {
+                              sceneProvider.loadGame(_currentScene!);
+                              skillProvider.loadSkills();
+                              Navigator.of(context)
+                                  .pushReplacementNamed(GameplayPage.id);
+                            }
+                          : null,
                     ),
                   ),
                   const SizedBox(height: 20),

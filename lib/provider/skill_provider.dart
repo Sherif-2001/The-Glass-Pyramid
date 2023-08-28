@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glass_pyramid/constants.dart';
+import 'package:glass_pyramid/models/skill.dart';
+import 'package:glass_pyramid/services/database_helper.dart';
 
 class SkillProvider extends ChangeNotifier {
   int _skillPoints = 3;
@@ -30,6 +32,23 @@ class SkillProvider extends ChangeNotifier {
     _skillPoints = 3;
     notifyListeners();
   }
+
+  void saveSkills() async {
+    await DatabaseHelper.saveSkillsValues(Skill(
+        intel: skillsValues[Stat.intelligence]!.toInt(),
+        charisma: skillsValues[Stat.charisma]!.toInt(),
+        strength: skillsValues[Stat.strength]!.toInt()));
+  }
+
+  void loadSkills() async {
+    final Skill loadedSkills = await DatabaseHelper.loadSkillsValues();
+    skillsValues[Stat.intelligence] = loadedSkills.intel.toDouble();
+    skillsValues[Stat.charisma] = loadedSkills.charisma.toDouble();
+    skillsValues[Stat.strength] = loadedSkills.strength.toDouble();
+    _skillPoints = 0;
+  }
+
+// ---------------------------------- Getters ----------------------------------
 
   Map<Stat, double> get skills => skillsValues;
 

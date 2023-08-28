@@ -10,7 +10,7 @@ import 'package:glass_pyramid/screens/stats_page.dart';
 import 'package:provider/provider.dart';
 import 'screens/home_page.dart';
 
-void main(List<String> args) {
+void main() {
   runApp(const MyApp());
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 }

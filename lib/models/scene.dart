@@ -2,12 +2,14 @@ import 'package:glass_pyramid/models/choice.dart';
 import 'package:glass_pyramid/models/next.dart';
 
 class Scene {
+  final int id;
   final String? text;
   final List<Choice>? choices;
   final NextScene? nextScene;
   final String? image;
 
-  Scene({this.text, this.choices, this.nextScene, this.image});
+  Scene(
+      {required this.id, this.text, this.choices, this.nextScene, this.image});
 
   factory Scene.fromJson(Map<String, dynamic> json) {
     List<Choice> choices = [];
@@ -17,10 +19,12 @@ class Scene {
       });
     }
     return Scene(
+      id: json['id'],
       text: json['text'],
       choices: choices,
       nextScene: json['next'] != null ? NextScene.fromJson(json['next']) : null,
       image: json["image"],
     );
   }
+
 }
